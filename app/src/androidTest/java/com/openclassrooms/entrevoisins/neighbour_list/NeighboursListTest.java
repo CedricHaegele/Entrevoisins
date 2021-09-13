@@ -1,6 +1,8 @@
 
 package com.openclassrooms.entrevoisins.neighbour_list;
 
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.rule.ActivityTestRule;
@@ -16,12 +18,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.pressBack;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.assertThat;
 import static androidx.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
+import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.core.IsNull.notNullValue;
-
 
 
 /**
@@ -51,8 +61,29 @@ public class NeighboursListTest {
     @Test
     public void myNeighboursList_shouldNotBeEmpty() {
         // First scroll to the position that needs to be matched and click on it.
-        onView(ViewMatchers.withId(R.id.list_neighbours))
+        onView(withId(R.id.list_neighbours))
                 .check(matches(hasMinimumChildCount(1)));
+    }
+
+    //when we Click on an item, NeighbourDetailActivity is launched
+    @Test
+    public void ClickOnItem() {
+
+        onView(withId(R.id.list_neighbours))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
+        // the second activity is launched
+        onView(withId(R.id.neighbourDetailActivity)).check(matches(isDisplayed()));
+    }
+
+    // TextView indicate the name on the new screen
+    @Test
+    public void TextViewWithName() {
+        onView(withId(R.id.list_neighbours))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        //neighbourDetailActivity is launched
+        onView(withId(R.id.neighbourDetailActivity));
+        // TextView is correct
+        onView(withId(R.id.textAvatar)).check(matches(withText("Caroline")));
     }
 
     /**
@@ -60,12 +91,27 @@ public class NeighboursListTest {
      */
     @Test
     public void myNeighboursList_deleteAction_shouldRemoveItem() {
+
         // Given : We remove the element at position 2
-        onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT));
+        onView(withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT));
         // When perform a click on a delete icon
-        onView(ViewMatchers.withId(R.id.list_neighbours))
+        onView(withId(R.id.list_neighbours))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
         // Then : the number of element is 11
-        onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
+        onView(withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT - 1));
+    }
+
+    // we only see favorite neighbours in the favorite tabs
+    @Test
+    public void favoriteTabsIsplayedOntheFavList() {
+        onView(withId(R.id.list_neighbours)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+
+        // click on the fav Button
+        onView(withId(R.id.imageStar)).perform(click());
+        // Go back on neighbour list
+        Espresso.pressBack();
+        // Neighbour should appear in the list of favorites neighbours
+        onView(withId(R.id.list_FavoriteNeighbours)).check(withItemCount(1));
+
     }
 }
