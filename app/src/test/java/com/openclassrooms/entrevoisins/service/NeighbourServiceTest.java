@@ -59,14 +59,22 @@ public class NeighbourServiceTest {
     }
 
     @Test
-    public void addNeighboursFavorites() {
-        List<Neighbour> expectedFavoritesNeighbour = service.getFavoritesNeighbours();
-        assertTrue(expectedFavoritesNeighbour.add(0,getNeighbourbyPosition(position)));}
+    public void addNeighboursFavoritesWithSucess() {
+        int position = 10;
+        Neighbour neighbour = service.getNeighbours().get(position);
+        service.createFavoritesNeighbours(neighbour);
+        assertFalse(service.getFavoritesNeighbours().isEmpty());
+    }
 
     @Test
-    public void deleteNeighbourFavorites() {
-        List<Neighbour> expectedFavoritesNeighbour = service.getFavoritesNeighbours();
-        assertTrue(expectedFavoritesNeighbour.remove(1));}
 
+    public void deleteNeighbourFavorites() {
+        int position = 9;
+        Neighbour neighbour = service.getNeighbours().get(position);
+        service.createFavoritesNeighbours(neighbour);
+        service.deleteFavoritesNeighbours(neighbour);
+        assertTrue(service.getFavoritesNeighbours().isEmpty());
     }
+
 }
+

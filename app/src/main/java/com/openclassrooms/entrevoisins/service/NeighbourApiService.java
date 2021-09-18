@@ -39,4 +39,4 @@ public interface NeighbourApiService {
     void createNeighbour(Neighbour neighbour);
     void createFavoritesNeighbours(Neighbour neighbour);
 
-    }
+   }
