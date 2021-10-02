@@ -1,7 +1,6 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,10 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.openclassrooms.entrevoisins.NeighbourDetailActivity;
-import com.openclassrooms.entrevoisins.events.ClickNeighbourEvent;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
+import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
@@ -32,11 +30,9 @@ public class FavoriteFragment extends Fragment {
     List<Neighbour> favNeighbours;
     private RecyclerView mRecyclerView;
 
-    private int fragPosition;
-    private Neighbour favoriteNeighbours;
 
 
-       public static FavoriteFragment newFavInstance() {
+    public static FavoriteFragment newFavInstance() {
         FavoriteFragment fragment = new FavoriteFragment();
         return fragment;
     }
@@ -50,7 +46,7 @@ public class FavoriteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_favorite_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_neighbour_list, container, false);
         Context context = view.getContext();
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -64,12 +60,32 @@ public class FavoriteFragment extends Fragment {
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(favNeighbours,1));
     }
 
+    @Subscribe
+    public void onDeleteFavoriteNeighbour(DeleteNeighbourEvent event) {
+        if (event.position == 1) {
+            mApiService.deleteNeighbour(event.neighbour);
+        if (mApiService.getNeighbours().contains(event.neighbour)){
+            mApiService.deleteNeighbour(event.neighbour);
+        }
+        initFavList();
+        }}
+
     @Override
     public void onResume() {
         super.onResume();
         initFavList();
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
 
-            }
+}
 

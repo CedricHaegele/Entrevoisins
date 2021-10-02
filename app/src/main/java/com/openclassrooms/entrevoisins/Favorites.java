@@ -9,6 +9,6 @@ public class Favorites extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_favorite_list);
+        setContentView(R.layout.fragment_neighbour_list);
     }
 }

@@ -1,6 +1,5 @@
 package com.openclassrooms.entrevoisins.service;
 
-import com.openclassrooms.entrevoisins.Favorites;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
 import java.util.List;
@@ -30,13 +29,12 @@ public interface NeighbourApiService {
      * @param {position}
      */
     Neighbour getPositionOfNeighbour(int position);
-    Neighbour getPositionOfFavoriteNeighbour(int position);
 
     /**
      * Create a neighbour
      * @param neighbour
      */
     void createNeighbour(Neighbour neighbour);
-    void createFavoritesNeighbours(Neighbour neighbour);
+    void createFavoritesNeighbours(Neighbour favNeighbour);
 
    }

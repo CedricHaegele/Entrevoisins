@@ -1,7 +1,5 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -98,7 +96,7 @@ public class NeighbourFragment extends Fragment {
 
     @Subscribe
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
-        if (event.fragPosition == 0) {
+        if (event.position == 0) {
             mApiService.deleteNeighbour(event.neighbour);
             if (mApiService.getFavoritesNeighbours().contains(event.neighbour)) {
                 mApiService.deleteFavoritesNeighbours(event.neighbour);

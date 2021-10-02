@@ -12,7 +12,6 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
     }
 
 
-
     /**
      * getItem is called to instantiate the fragment for the given page.
      * @param position

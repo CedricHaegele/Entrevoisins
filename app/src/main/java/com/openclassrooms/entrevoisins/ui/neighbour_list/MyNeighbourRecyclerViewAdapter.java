@@ -1,10 +1,7 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.openclassrooms.entrevoisins.NeighbourDetailActivity;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.events.ClickNeighbourEvent;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
@@ -36,7 +32,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
 
     public MyNeighbourRecyclerViewAdapter(List<Neighbour> items, int fragPosition) {
         mNeighbours = items;
-        this.fragPosition=fragPosition;
+        this.fragPosition = fragPosition;
     }
 
     @Override
@@ -45,6 +41,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 .inflate(R.layout.fragment_neighbour, parent, false);
         return new ViewHolder(view);
     }
+
     @Override
     public void onBindViewHolder(final ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Neighbour neighbour = mNeighbours.get(position);
@@ -57,7 +54,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour,fragPosition));
+                EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour, fragPosition));
             }
         });
 
@@ -68,6 +65,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
             }
         });
     }
+
     @Override
     public int getItemCount() {
         return mNeighbours.size();

@@ -11,14 +11,14 @@ public class DeleteNeighbourEvent {
      * Neighbour to delete
      */
     public Neighbour neighbour;
-    public int fragPosition;
+    public int position;
 
     /**
      * Constructor.
      * @param neighbour
      */
-    public DeleteNeighbourEvent(Neighbour neighbour, int fragPosition) {
+    public DeleteNeighbourEvent(Neighbour neighbour, int position) {
         this.neighbour = neighbour;
-        this.fragPosition=fragPosition;
+        this.position = position;
     }
 }

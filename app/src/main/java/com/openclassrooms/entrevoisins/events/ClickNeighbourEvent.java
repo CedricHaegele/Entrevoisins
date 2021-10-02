@@ -3,7 +3,7 @@ package com.openclassrooms.entrevoisins.events;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
 /**
- * Event fired when a user click a Neighbour
+ * Event fired when a user clicks a Neighbour
  */
 public class ClickNeighbourEvent {
 

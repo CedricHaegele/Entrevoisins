@@ -29,6 +29,15 @@
             app:srcCompat="@drawable/ic_star_border_white_24dp"
             app:tint="#F9D211" />
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ScrollView>
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
         <ImageView
             android:id="@+id/imageAvatar"
@@ -55,11 +64,11 @@
 
         <ImageButton
             android:id="@+id/imageReturn"
-            android:background="@null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
+            android:background="@null"
             android:onClick="buttonReturn"
             android:src="@drawable/ic_baseline_arrow_back_24" />
 

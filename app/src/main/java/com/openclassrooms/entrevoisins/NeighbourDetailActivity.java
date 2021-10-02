@@ -42,11 +42,7 @@ public class NeighbourDetailActivity extends AppCompatActivity {
     private Neighbour neighbourName;
     private NeighbourApiService mApiService;
     private Neighbour favNeighbour;
-    private List<Neighbour> favoritePosition;
-    private FavoriteFragment favFragment;
-    private int fragment;
     private int position;
-
 
     @Override
 
@@ -101,7 +97,7 @@ if (mApiService.getFavoritesNeighbours().contains(neighbourName)){
 
     public void validateProfile() {
 //message qui affiche la récupération du nom
-        Toast.makeText(getApplicationContext(), neighbourName.getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), neighbourName.getName(), Toast.LENGTH_LONG).show();
     }
 
     public void linkProfile() {
@@ -119,6 +115,7 @@ if (mApiService.getFavoritesNeighbours().contains(neighbourName)){
     public void buttonReturn(View view){
         Intent intent= new Intent(this,ListNeighbourActivity.class);
         startActivity(intent);
+        finish();
     }
 
 }
