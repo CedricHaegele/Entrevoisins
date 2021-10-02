@@ -96,19 +96,19 @@ public class NeighbourFragment extends Fragment {
 
     @Subscribe
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
-        if (event.position == 0) {
+        if (event.fragPosition == 0) {
             mApiService.deleteNeighbour(event.neighbour);
-            if (mApiService.getFavoritesNeighbours().contains(event.neighbour)) {
+            mApiService.getFavoritesNeighbours().contains(event.neighbour); {
                 mApiService.deleteFavoritesNeighbours(event.neighbour);
             }
             initList();
-}}
+        }}
 
-            @Subscribe
+    @Subscribe
     public void onClickNeighbour(ClickNeighbourEvent event) {
         Intent intent = new Intent(getActivity(), NeighbourDetailActivity.class);
         intent.putExtra("Neighbour", event.neighbour);
         intent.putExtra("Position", event.position);
         startActivity(intent);
-    }
+            }
 }

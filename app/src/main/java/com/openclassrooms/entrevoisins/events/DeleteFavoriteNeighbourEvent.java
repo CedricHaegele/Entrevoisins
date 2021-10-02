@@ -5,20 +5,20 @@ import com.openclassrooms.entrevoisins.model.Neighbour;
 /**
  * Event fired when a user deletes a Neighbour
  */
-public class DeleteNeighbourEvent {
+public class DeleteFavoriteNeighbourEvent {
 
     /**
      * Neighbour to delete
      */
-    public Neighbour neighbour;
+    public Neighbour favNeighbour;
     public int fragPosition;
 
     /**
      * Constructor.
-     * @param neighbour
+     * @param favNeighbour
      */
-    public DeleteNeighbourEvent(Neighbour neighbour, int fragPosition) {
-        this.neighbour = neighbour;
+    public DeleteFavoriteNeighbourEvent(Neighbour favNeighbour, int fragPosition) {
+        this.favNeighbour = favNeighbour;
         this.fragPosition=fragPosition;
     }
 }
