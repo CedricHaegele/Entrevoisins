@@ -18,10 +18,11 @@ Entrevoisins est une application Android qui permet aux habitants d'un même qua
 - SDK minimum : API 21 (Android 5.0)
 - SDK cible : API 34 (Android 14)
 
-![Screenshot_20241028-232907](https://github.com/user-attachments/assets/a58fb5da-36e0-47a7-8e66-b72b4e082ad3)
-![Screenshot_20241028-232826](https://github.com/user-attachments/assets/a32581fc-9460-4746-b4c3-c85ffd0401d9)
-![Screenshot_20241028-232854](https://github.com/user-attachments/assets/0d01846f-4e93-4cb2-889b-47aba0297277)
 
+<img width="540" alt="Screenshot_20241028-232835" src="https://github.com/user-attachments/assets/5675e694-467c-483e-b91a-68d27ece5cbf">
+<img width="540" alt="Screenshot_20241028-232907" src="https://github.com/user-attachments/assets/48916df4-2cfa-4b6c-b09e-d8497fcdfc6d">
+<img width="540" alt="Screenshot_20241028-232854" src="https://github.com/user-attachments/assets/e21ff275-6253-4754-b245-b8880f2e6617">
+<img width="540" alt="Screenshot_20241028-232826" src="https://github.com/user-attachments/assets/b7a46297-b38b-4365-b598-58c9b3d03fcf">
 
 
 ## Installation
